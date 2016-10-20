@@ -3,8 +3,9 @@
 \LoadClass[12pt]{article}
 
 \RequirePackage[margin=30mm]{geometry}
-\RequirePackage{xeCJK, CJKnumb}
+\RequirePackage{indentfirst, xeCJK, CJKnumb}
 \RequirePackage{ulem, etoolbox, xstring}
+\RequirePackage{minted}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{fontspec}
 \setCJKmainfont[BoldFont={方正准雅宋_GBK}]{方正兰亭刊宋_GBK}

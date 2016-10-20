@@ -37,7 +37,8 @@
 \newcounter{@LabMonth}     \setcounter{@LabMonth}{\the\month}
 \newcounter{@LabDay}       \setcounter{@LabDay}{\the\day}
 
-\newcommand{\@SetLabDate}[3]{
+\newcommand{\SetLabDate}[1]{\@SetLabDate#1\relax}
+\def\@SetLabDate#1-#2-#3\relax{
   \setcounter{@LabYear}{#1}
   \setcounter{@LabYearStart}{#1}
   \setcounter{@LabYearEnd}{#1}

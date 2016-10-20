@@ -14,7 +14,7 @@
 \setmonofont{Source Code Pro}
 
 \newcommand{\SetLabCol}[1]{\def\@LabCol{#1}}
-\newcommand{\AddLabCol}[1]{\uline{\makebox[12em][l]{#1}}}
+\newcommand{\@AddLabCol}[1]{\uline{\makebox[12em][l]{#1}}}
 
 \newcommand{\SetLabMeta}[2]{
   \def\@LabCourseName{#1}
@@ -67,7 +67,13 @@
       \@AddLabItem{实验名称}{\uline{\@title\hfill}}
       \@AddLabItem{指导教师}{\uline{\@LabTeacherName\hfill}}
       \@AddLabItem{实验完成人}{
-        \ifundef{\LabCol}{\AddLabCol{\@LabAuthorName}}{\@LabCol}
+        \ifundef{\@LabCol}{%
+          \@AddLabCol{\@LabAuthorName}
+        }{%
+          \@for\@tmp:=\@LabCol\do{%
+            \@AddLabCol{\@tmp}
+          }
+        }
       }
       \vspace{1.5em}
     \end{tabular}

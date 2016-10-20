@@ -1,0 +1,82 @@
+#+LATEX_CLASS: buptsse-lab
+#+AUTHOR: 胡先生,2014222222
+#+TITLE: LaTeX 实验模板的演示
+#+OPTIONS: toc:nil
+#+LATEX_HEADER_EXTRA: \SetLabMeta{\LaTeX 入门}{胡老湿}
+#+LATEX_HEADER_EXTRA: \SetLabCol{王背锅,李带飞,张酱油}
+#+LATEX_HEADER_EXTRA: \SetLabDate{2016-6-6}
+
+* 实验目的
+  介绍 LaTeX 实验模板在 Org mode 中的使用方法。
+* 实验环境
+  - Spacemacs 0.200.3
+  - Emacs 25.1-1
+  - 断电断网的宿舍
+* 实验内容
+** 安装模板
+TexLive 默认的用户包位于 =~/texmf= 。修改为 =~/.config/texmf= ，强迫症患者的福音。
+#+BEGIN_SRC sh
+export TEXMFHOME=~/.config/texmf
+#+END_SRC
+
+重启 shell，得到：
+#+BEGIN_SRC sh
+~ % kpsewhich -var-value TEXMFHOME
+/home/hugh/.config/texmf
+#+END_SRC
+
+接着安装模板：
+#+BEGIN_SRC sh
+mkdir -p ~/.config/texmf/tex/latex/local/
+cp buptsse-lab.cls ~/.config/texmf/tex/latex/local/
+#+END_SRC
+
+测试安装结果：
+#+BEGIN_SRC sh
+~ % kpsewhich buptsse-lab.cls
+/home/hugh/.config/texmf/tex/latex/local/buptsse-lab.cls
+#+END_SRC
+
+** 配置 Org Mode
+#+BEGIN_SRC emacs-lisp
+    (add-to-list 'org-latex-classes
+                  '("buptsse-lab"
+                   "\\documentclass{buptsse-lab}
+                   [NO-DEFAULT-PACKAGES]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    (setq org-latex-pdf-process
+          '("xelatex -shell-escape -interaction nonstopmode %f"
+            "xelatex -shell-escape -interaction nonstopmode %f")
+          org-latex-listings 'minted
+          org-latex-minted-options '(("fontsize" "\\scriptsize") ("breaklines" "")))
+#+END_SRC
+** 编写样例文档
+*** 必选参数
+- 个人信息：Org 文件中的 =AUTHOR= 会被半角逗号分成姓名和学号两部分。
+- 实验名称：Org 文件中的 =TITLE= 将作为实验名称。
+- 配置课程元信息：在 LaTeX 头中插入 =\SetLabMeta{课程名称}{教师名称}= 。
+- 推荐移除目录：加入 =#+OPTIONS: toc:nil= 。
+*** 可选参数
+添加多个合作者：在 LaTeX 头中插入以半角逗号分开的合作者。
+
+#+BEGIN_SRC latex
+\SetLabCol{name0,name1,name2}
+#+END_SRC
+
+篡改日期：在 LaTeX 头中插入 =YYYY-MM-DD= 风格的日期。
+#+BEGIN_SRC latex
+\SetLabDate{YYYY-MM-DD}
+#+END_SRC
+*** 样例
+#+INCLUDE: "example.org" src text :lines "-8"
+
+* 实验结果
+  （如你所见）
+* 结论
+在断电断网的情况下熬夜写代码是不吼的！准备睡觉！
+
+Fri Oct 21 01:19:05 CST 2016

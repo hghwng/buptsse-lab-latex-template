@@ -12,7 +12,9 @@
 \setCJKfamilyfont{Caption}{方正粗雅宋_GBK}
 \setCJKfamilyfont{SubCaption}{方正准雅宋_GBK}
 \setCJKfamilyfont{Item}{方正标雅宋_GBK}
+\setCJKmonofont{Noto Sans CJK SC}
 \setmonofont{Source Code Pro}
+\renewcommand{\contentsname}{目录}
 
 \newcommand{\SetLabCol}[1]{\def\@LabCol{#1}}
 \newcommand{\@AddLabCol}[1]{\uline{\makebox[12em][l]{#1}}}

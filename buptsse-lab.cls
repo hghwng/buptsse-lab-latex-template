@@ -1,20 +1,20 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{buptsse-lab}[2014/08/16 LaTeX class for labs of BUPT SSE]
+\ProvidesClass{buptsse-lab}[2016/10/22 LaTeX class for labs of BUPT SSE]
 \LoadClass[12pt]{article}
 
 \RequirePackage[margin=30mm]{geometry}
-\RequirePackage{indentfirst, xeCJK, CJKnumb}
+\RequirePackage{ctex, CJKnumb}
 \RequirePackage{ulem, etoolbox, xstring}
 \RequirePackage{minted}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{fontspec}
+
 \setCJKmainfont[BoldFont={方正准雅宋_GBK}]{方正兰亭刊宋_GBK}
-\setCJKfamilyfont{Caption}{方正粗雅宋_GBK}
-\setCJKfamilyfont{SubCaption}{方正准雅宋_GBK}
+\setCJKfamilyfont{Caption}[BoldFont=方正粗雅宋_GBK]{方正兰亭刊宋_GBK}
+\setCJKfamilyfont{SubCaption}[BoldFont=方正准雅宋_GBK]{方正兰亭刊宋_GBK}
 \setCJKfamilyfont{Item}{方正标雅宋_GBK}
 \setCJKmonofont{Noto Sans CJK SC}
 \setmonofont{Source Code Pro}
-\renewcommand{\contentsname}{目录}
 
 \newcommand{\SetLabCol}[1]{\def\@LabCol{#1}}
 \newcommand{\@AddLabCol}[1]{\uline{\makebox[12em][l]{#1}}}

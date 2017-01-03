@@ -84,11 +84,12 @@
 
     \vspace{\fill}
 
-    姓名：\underline{\,\@LabAuthorName\,}\,
-    学号：\underline{\,\@LabAuthorId\,}\,
-    成绩：\underline{\hspace{3em}}
-
-    \vspace{2em}
+    \ifundef{\@LabCol}{%
+      姓名：\underline{\,\@LabAuthorName\,}\,
+      学号：\underline{\,\@LabAuthorId\,}\,
+      成绩：\underline{\hspace{3em}}
+      \vspace{2em}
+    }
 
     \begin{flushright}
       日期：\arabic{@LabYear}年\arabic{@LabMonth}月\arabic{@LabDay}日
